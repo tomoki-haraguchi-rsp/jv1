@@ -1,4 +1,3 @@
-/* 19001 HARAGUCHI TOMOKI */
 /* SystemManager.java
  */
 
@@ -12,9 +11,9 @@ public class SystemManager {
 	private ClientList clist;  // 顧客のリスト
 	private WorkList wlist;    // 稼働のリスト
 
-	private String pfilename = "person.csv";
-	private String cfilename = "client.csv";
-	private String wfilename = "work.csv";
+	private String pfilename = "./src/person.csv";
+	private String cfilename = "./src/client.csv";
+	private String wfilename = "./src/work.csv";
 
 	private ConsoleStatus sts1, sts2;
 	private DisplayPersonStatus sts5, sts5_2;
@@ -28,6 +27,8 @@ public class SystemManager {
 	private AddWorkStatus sts11;
 	private DeleteWorkStatus sts12;
 	private ExitStatus sts13;
+	private AddClientStatus sts14;
+	private DeleteClientStatus sts15;
 
 	public static void main( String[] args ) {
 		try {
@@ -70,9 +71,10 @@ public class SystemManager {
 		    "  従業員検索(S)\n" +
 		    "  従業員管理(JI：追加 JU：更新 JD：削除)\n" +
 		    "  稼働状況管理(KI：追加 KD：削除)\n" +
+		    "  顧客情報管理(CI：追加 CU：削除)\n" +
 		    "  終了(X)\n" +
 		    "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/\n",
-		    "どの機能を実行しますか？\n[S,JI,JU,JD,KI,KD,X]>",
+		    "どの機能を実行しますか？\n[S,JI,JU,JD,CI,CU,KI,KD,X]>",
 		    false
 		 );
 		// 起動時から"S"入力時の状態
@@ -179,9 +181,27 @@ public class SystemManager {
 		    true
 		 );
 
+		// 顧客情報を追加する状態
+		sts14 = new AddClientStatus(
+		    "",
+		    "エンターキーを押すとメニューに戻ります。>",
+		    false,
+		    plist
+		 );
+
+		// 従業員の情報を更新する状態
+		sts15 = new UpdateClientStatus(
+		    "",
+		    "更新しました。\nエンターキーを押すとメニューに戻ります。>",
+		    false,
+		    plist
+		 );
+
 		sts1.setNextStatus( "S", sts2 );
 		sts1.setNextStatus( "JI", sts8 );
 		sts1.setNextStatus( "JU", sts9 );
+		sts1.setNextStatus( "CI", sts14 );
+		sts1.setNextStatus( "CU", sts15 );
 		sts1.setNextStatus( "JD", sts10 );
 		sts1.setNextStatus( "KI", sts11 );
 		sts1.setNextStatus( "KD", sts12 );
