@@ -39,25 +39,26 @@ public class UpdatePersonStatus extends ConsoleStatus {
 	 */
 	public void displayFirstMess() throws IOException {
 		int id, no, num;
+		if ( data == null ) {
+			// IDの入力
+			System.out.print( "従業員IDを入力してください。\n>" );
+			data = inputMessage();
+			try {
+				id = Integer.parseInt( data ); // 従業員ID
+			} catch( NumberFormatException e ) {
+				System.out.println( "数値に変換できないデータが入力されています。" );
+				System.out.println( "再入力してください。" );
+				displayFirstMess();
+				return;
+			}
 
-		// IDの入力
-		System.out.print( "従業員IDを入力してください。\n>" );
-		data = inputMessage();
-		try {
-			id = Integer.parseInt( data ); // 従業員ID
-		} catch( NumberFormatException e ) {
-			System.out.println( "数値に変換できないデータが入力されています。" );
-			System.out.println( "再入力してください。" );
-			displayFirstMess();
-			return;
-		}
-
-		Person p = pl.get( id );
-		if( p == null ) {
-			System.out.println( "指定のIDの従業員は存在しません。" );
-			System.out.println( "再入力してください。" );
-			displayFirstMess();
-			return;
+			Person p = pl.get( id );
+			if( p == null ) {
+				System.out.println( "指定のIDの従業員は存在しません。" );
+				System.out.println( "再入力してください。" );
+				displayFirstMess();
+				return;
+			}
 		}
 
 		// 従業員の情報の出力

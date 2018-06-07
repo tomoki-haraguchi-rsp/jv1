@@ -46,6 +46,21 @@ public class AddPersonStatus extends ConsoleStatus {
 		}
 
 		try {
+			for( int idx = 0; idx < data.length; idx++ ) {
+				if ( data[ idx ].equals( "" ) ) {
+					System.out.println( "未入力項目が存在します。" );
+					PrintEmptyData();
+					System.out.println( "再入力しますか？[Y,N]" );
+					String c = inputMessage();
+					if ( c.equals( "Y" ) ) {
+						idx = -1;
+						continue;
+					} else {
+						break;
+					}
+				}
+			}
+
 			int wy = Integer.parseInt( data[ 4 ] );  // 勤続年数
 			int pr = Integer.parseInt( data[ 5 ] );  // 単価
 
