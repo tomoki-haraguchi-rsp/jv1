@@ -28,7 +28,7 @@ public class SystemManager {
 	private DeleteWorkStatus sts12;
 	private ExitStatus sts13;
 	private AddClientStatus sts14;
-	private DeleteClientStatus sts15;
+	//private DeleteClientStatus sts15;
 
 	public static void main( String[] args ) {
 		try {
@@ -186,22 +186,22 @@ public class SystemManager {
 		    "",
 		    "エンターキーを押すとメニューに戻ります。>",
 		    false,
-		    plist
+		    clist
 		 );
 
 		// 従業員の情報を更新する状態
-		sts15 = new UpdateClientStatus(
+		/*sts15 = new UpdateClientStatus(
 		    "",
 		    "更新しました。\nエンターキーを押すとメニューに戻ります。>",
 		    false,
 		    plist
-		 );
+		 );*/
 
 		sts1.setNextStatus( "S", sts2 );
 		sts1.setNextStatus( "JI", sts8 );
 		sts1.setNextStatus( "JU", sts9 );
 		sts1.setNextStatus( "CI", sts14 );
-		sts1.setNextStatus( "CU", sts15 );
+		//sts1.setNextStatus( "CU", sts15 );
 		sts1.setNextStatus( "JD", sts10 );
 		sts1.setNextStatus( "KI", sts11 );
 		sts1.setNextStatus( "KD", sts12 );
@@ -227,6 +227,8 @@ public class SystemManager {
 		sts11.setNextStatus( " ", sts1 );
 
 		sts12.setNextStatus( " ", sts1 );
+                
+                                    sts14.setNextStatus( " ", sts1);
 	}
 
 	// システムの起動
