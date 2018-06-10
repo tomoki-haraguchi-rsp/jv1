@@ -82,6 +82,15 @@ public class AddPersonStatus extends ConsoleStatus {
 		}
 	}
 
+	private void PrintEmptyData() {
+		for( int idx = 0; idx < messages.length; idx++ ) {
+			if ( data[idx]  == null || data[ idx ].equals( "" ) ) {
+				String[] n = data[idx].split("を");
+				System.out.print( n[0] );
+			}
+		}
+	}
+
 	// 次の状態に遷移することを促すためのメッセージの表示
 	// このクラスは，初期状態に戻ると決まっているため，何が
 	// 入力されても初期状態に遷移するようにしている
